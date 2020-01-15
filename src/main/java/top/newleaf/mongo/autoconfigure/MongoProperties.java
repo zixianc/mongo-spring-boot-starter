@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * @author chengshx
- * @date 2020/1/9
  */
 @ConfigurationProperties(prefix = "top.newleaf.mongo")
 public class MongoProperties {

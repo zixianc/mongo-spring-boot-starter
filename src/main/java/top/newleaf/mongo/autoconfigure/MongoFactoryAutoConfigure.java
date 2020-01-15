@@ -8,7 +8,6 @@ import top.newleaf.mongo.annotation.EnableMongoCodecConfiguration;
 
 /**
  * @author chengshx
- * @date 2020/1/9
  */
 @Configuration
 @ConditionalOnBean(annotation = EnableMongoCodecConfiguration.class)

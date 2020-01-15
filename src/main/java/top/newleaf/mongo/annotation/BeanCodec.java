@@ -6,7 +6,6 @@ import java.lang.annotation.*;
 
 /**
  * @author chengshx
- * @date 2020/1/10
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
