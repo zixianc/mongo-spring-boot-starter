@@ -2,7 +2,7 @@ package top.newleaf.mongo.constant;
 
 /**
  * @author chengshx
- * @date 2020/1/16
+ * @since 1.0.1
  */
 public interface MongoCodecConstants {
 
