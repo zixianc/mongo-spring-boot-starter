@@ -11,6 +11,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 import top.newleaf.mongo.codec.BeanCodec;
+import top.newleaf.mongo.constant.MongoCodecConstants;
 import top.newleaf.mongo.factory.MongoDB;
 import top.newleaf.mongo.factory.MongoFactory;
 
@@ -25,7 +26,6 @@ import java.util.Map;
 public class MongoDBBeanPostProcessor implements BeanPostProcessor {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(MongoDBBeanPostProcessor.class);
-    private final static String NAME_SUFFIX = "DB";
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -55,7 +55,7 @@ public class MongoDBBeanPostProcessor implements BeanPostProcessor {
                 Resource resource = AnnotationUtils.findAnnotation(field, Resource.class);
                 if (resource != null && StringUtils.hasLength(resource.name())) {
                     String name = resource.name();
-                    if (name.endsWith(NAME_SUFFIX)) {
+                    if (name.endsWith(MongoCodecConstants.NAME_SUFFIX)) {
                         name = name.substring(0, name.length() - 2);
                     }
                     ReflectionUtils.setField(field, bean, MongoFactory.getDb(name));
@@ -77,9 +77,9 @@ public class MongoDBBeanPostProcessor implements BeanPostProcessor {
             Map<String, MongoDB> dbs = MongoFactory.getDbs();
             if (!dbs.isEmpty()) {
                 dbs.forEach((name, db) -> {
-                    String beanName = name + NAME_SUFFIX;
+                    String beanName = name + MongoCodecConstants.NAME_SUFFIX;
                     if (!beanFactory.containsBean(beanName)) {
-                        beanFactory.registerSingleton(name + NAME_SUFFIX, db);
+                        beanFactory.registerSingleton(name + MongoCodecConstants.NAME_SUFFIX, db);
                         LOGGER.info("register mongoDB: {}", beanName);
                     }
                 });

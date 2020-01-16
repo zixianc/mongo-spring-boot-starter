@@ -70,11 +70,11 @@ public class Comment {
 }
 ```
 
-* 继承BeanCodec传入实体泛型，标记注解`@BeanCodec`
+* 继承BeanCodec传入实体泛型，标记注解`@Component`注入
 ```java
 import top.newleaf.mongo.annotation.BeanCodec;
 
-@BeanCodec
+@Component
 public class CommentCodec extends BeanCodec<Comment> {
 }
 
